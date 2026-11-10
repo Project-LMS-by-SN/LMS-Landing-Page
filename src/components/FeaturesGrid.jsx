@@ -70,9 +70,6 @@ export default function FeaturesGrid() {
       <div className="container">
         {/* Section Heading */}
         <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto 54px" }}>
-          <div className="badge-blue" style={{ marginBottom: "14px" }}>
-            <span>Everything Your Study Library Needs</span>
-          </div>
           <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px", color: "#0f172a" }}>
             Purpose-Built for Indian Reading Rooms & Study Libraries
           </h2>

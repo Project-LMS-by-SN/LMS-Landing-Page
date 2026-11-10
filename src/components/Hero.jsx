@@ -34,11 +34,6 @@ export default function Hero({ onOpenDemo }) {
       borderBottom: "1px solid var(--border-subtle)"
     }}>
       <div className="container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-        {/* Top Announcement Pill */}
-        <div style={{ display: "inline-flex", marginBottom: "20px" }} className="badge-green">
-          <span className="pulse-dot-green"></span>
-          <span>India's #1 Cloud Platform for Multi-Shift Study Libraries & Reading Halls</span>
-        </div>
 
         {/* Hero Title with Blue, Green and Dark tones */}
         <h1 style={{
@@ -66,17 +61,20 @@ export default function Hero({ onOpenDemo }) {
         </p>
 
         {/* Action Buttons: Blue, Green, Red accents */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "14px",
-          flexWrap: "wrap",
-          marginBottom: "20px"
-        }}>
+        <div
+  className="hero-cta-buttons"
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "14px",
+    flexWrap: "wrap",
+    marginBottom: "20px"
+  }}
+>
           <Link
             to="/register"
-            className="btn-primary"
+            className="btn-primary hero-cta-btn"
             style={{ fontSize: "1.02rem", padding: "15px 30px" }}
           >
             <FaUserPlus /> Register Your Library - Free
@@ -84,7 +82,7 @@ export default function Hero({ onOpenDemo }) {
 
           <Link
             to="/features"
-            className="btn-green"
+            className="btn-green hero-cta-btn"
             style={{ fontSize: "1.02rem", padding: "15px 28px" }}
           >
             <FaPlay style={{ fontSize: "11px" }} /> Explore Features
@@ -94,7 +92,7 @@ export default function Hero({ onOpenDemo }) {
             href="https://wa.me/919142025447?text=Hi%20Software%20Native,%20I%20am%20interested%20in%20LMS%20for%20my%20library."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-whatsapp"
+            className="btn-whatsapp hero-cta-btn"
             style={{ fontSize: "1.02rem", padding: "15px 28px" }}
           >
             <FaWhatsapp style={{ fontSize: "18px" }} /> WhatsApp Support

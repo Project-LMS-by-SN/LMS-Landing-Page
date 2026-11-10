@@ -41,40 +41,10 @@ export default function Navbar({ onOpenDemo }) {
         transition: "all 0.25s ease"
       }}
     >
-      {/* Top Mini Hotline Bar (White, Green & Red accents) */}
-      <div style={{
-        background: "#0f172a",
-        color: "#ffffff",
-        fontSize: "0.78rem",
-        padding: "6px 0",
-        fontWeight: "600"
-      }}>
-        <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span className="pulse-dot-green"></span>
-            <span>India's Best Library Management System</span>
-          </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <a href="tel:+919142025447" style={{ display: "flex", alignItems: "center", gap: "6px", color: "#93c5fd" }}>
-              <FaPhoneAlt style={{ fontSize: "11px" }} /> +91 9142025447
-            </a>
-            <a
-              href="https://wa.me/919142025447?text=Hi%20Software%20Native,%20I%20am%20interested%20in%20LMS%20for%20my%20library."
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", gap: "6px", color: "#86efac" }}
-            >
-              <FaWhatsapp style={{ fontSize: "13px" }} /> WhatsApp Support
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation Bar */}
       <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px" }}>
         {/* Brand Logo */}
-        <Link to="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", flexShrink: 0 }}>
+        <Link to="/" className="brand-logo" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", minWidth: 0 }}>
           <div style={{
             width: "42px",
             height: "42px",
@@ -89,7 +59,7 @@ export default function Navbar({ onOpenDemo }) {
           }}>
             📚
           </div>
-          <div>
+         <div className="brand-title">
             <div style={{
               fontSize: "1.2rem",
               fontWeight: "900",
@@ -97,7 +67,7 @@ export default function Navbar({ onOpenDemo }) {
               lineHeight: 1.1,
               color: "#0f172a"
             }}>
-              LMS <span style={{ color: "#2563eb" }}>by Study Guru</span>
+              LMS
             </div>
           </div>
         </Link>
