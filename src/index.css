@@ -561,3 +561,376 @@ button {
   }
 }
 
+
+/* =====================================
+   GLOBAL RESPONSIVE DESIGN
+===================================== */
+
+html {
+  width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: 24px;
+  }
+
+  .section-padding {
+    padding-block: 55px;
+  }
+
+  .device-showcase-container {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 16px;
+  }
+
+  .section-padding {
+    padding-block: 40px;
+  }
+
+  .btn-primary,
+  .btn-green,
+  .btn-red,
+  .btn-secondary,
+  .btn-whatsapp {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .white-card:hover {
+    transform: none;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 14px;
+  }
+
+  h1 {
+    overflow-wrap: break-word;
+  }
+
+  .device-showcase-container {
+    padding-bottom: 10px;
+  }
+
+  .laptop-screen-bezel {
+    border-width: 5px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .whatsapp-floating {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+@media (max-width: 600px) {
+
+  .brand-logo {
+    gap: 8px !important;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .brand-title {
+    font-size: clamp(14px, 3.5vw, 18px) !important;
+    white-space: nowrap;
+  }
+
+  .desktop-register-btn {
+    display: none !important;
+  }
+
+  .nav-actions {
+    flex-shrink: 0 !important;
+    gap: 0 !important;
+  }
+
+  .mobile-hamburger {
+    flex-shrink: 0 !important;
+  }
+}
+
+
+/* Hero CTA Buttons - Mobile Equal Size */
+@media (max-width: 600px) {
+
+  .hero-cta-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 14px !important;
+    padding: 0 14px;
+    box-sizing: border-box;
+  }
+
+  .hero-cta-buttons .hero-cta-btn {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 335px !important;
+    min-height: 70px !important;
+    box-sizing: border-box !important;
+    padding: 15px 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-size: 16px !important;
+  }
+
+}
+
+/* MOBILE RESPONSIVE COMPARISON TABLE */
+.comparison-table-wrap {
+  width: 100%;
+}
+
+.comparison-mobile-cards {
+  display: none;
+}
+
+@media (max-width: 767px) {
+
+  .comparison-table-wrap {
+    overflow: visible !important;
+  }
+
+  .comparison-table {
+    display: block !important;
+    width: 100% !important;
+    border-collapse: separate !important;
+  }
+
+  .comparison-table thead {
+    display: none !important;
+  }
+
+  .comparison-table tbody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  .comparison-table tbody tr {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .comparison-table tbody td {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 13px 15px !important;
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+    overflow-wrap: anywhere !important;
+    border: none !important;
+  }
+
+  .comparison-table tbody td:first-child {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .comparison-table tbody td:nth-child(2) {
+    background: #fef2f2 !important;
+    color: #b91c1c !important;
+  }
+
+  .comparison-table tbody td:nth-child(2)::before {
+    content: "❌ Traditional Paper Register";
+    display: block;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .comparison-table tbody td:nth-child(3) {
+    background: #ecfdf5 !important;
+    color: #047857 !important;
+  }
+
+  .comparison-table tbody td:nth-child(3)::before {
+    content: "✅ LMS by Study Guru";
+    display: block;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+}
+/* LIVE SEAT MATRIX - MOBILE RESPONSIVE FIX */
+
+.live-seat-grid {
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+}
+
+.live-seat-cell {
+  min-width: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  font-size: clamp(9px, 2.5vw, 11px) !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+
+  .seat-browser-bar {
+    gap: 7px !important;
+    padding: 10px 9px !important;
+  }
+
+  .seat-browser-bar > div:first-child {
+    flex-shrink: 0;
+    gap: 4px !important;
+  }
+
+  .seat-browser-bar > div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+    padding: 5px 7px !important;
+    font-size: 0.65rem !important;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .seat-browser-bar > div:nth-child(2) span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .seat-browser-bar > div:last-child {
+    flex-shrink: 0;
+    font-size: 0.64rem !important;
+    white-space: nowrap;
+    gap: 4px !important;
+  }
+
+  .live-seat-grid {
+    gap: 5px !important;
+    padding: 9px !important;
+    overflow: hidden;
+  }
+
+  .live-seat-cell {
+    font-size: clamp(8px, 2.3vw, 10px) !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .live-seat-grid {
+    gap: 3px !important;
+    padding: 7px !important;
+  }
+
+  .live-seat-cell {
+    font-size: 8px !important;
+  }
+}
+/* ABOUT US COMPARISON - MOBILE CARDS */
+
+@media (max-width: 767px) {
+
+  .about-comparison-header {
+    display: none !important;
+  }
+
+  .about-comparison-row {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 0 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+  }
+
+  .about-comparison-row > div {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 13px 15px !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .about-comparison-row > div:first-child {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .about-comparison-row > div:nth-child(2) {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+    align-items: flex-start !important;
+  }
+
+  .about-comparison-row > div:nth-child(2)::before {
+    content: "❌ Manual Registers";
+    display: block;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .about-comparison-row > div:nth-child(3) {
+    background: #ecfdf5 !important;
+    color: #059669 !important;
+    align-items: flex-start !important;
+  }
+
+  .about-comparison-row > div:nth-child(3)::before {
+    content: "✅ LMS by Study Guru";
+    display: block;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+}

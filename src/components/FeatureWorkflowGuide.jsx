@@ -87,9 +87,9 @@ export default function FeatureWorkflowGuide() {
             </div>
 
             {/* Seat Grid Simulation */}
-            <div style={{
+            <div className="live-seat-grid" style={{
               display: "grid",
-              gridTemplateColumns: "repeat(10, 1fr)",
+              gridTemplateColumns: "repeat(10, minmax(0, 1fr))",
               gap: "6px",
               background: "#ffffff",
               padding: "12px",
@@ -104,6 +104,7 @@ export default function FeatureWorkflowGuide() {
                 { no: "B06", s: "a" }, { no: "B07", s: "b" }, { no: "B08", s: "a" }, { no: "B09", s: "due" }, { no: "B10", s: "b" }
               ].map((seat) => (
                 <div
+                  className="live-seat-cell"
                   key={seat.no}
                   style={{
                     padding: "7px 2px",
@@ -918,6 +919,7 @@ export default function FeatureWorkflowGuide() {
               >
                 {/* Browser Address Bar */}
                 <div
+                  className="seat-browser-bar"
                   style={{
                     background: "#f1f5f9",
                     borderBottom: "1px solid #e2e8f0",
@@ -996,8 +998,8 @@ export default function FeatureWorkflowGuide() {
             </p>
           </div>
 
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem", textAlign: "left" }}>
+          <div className="comparison-table-wrap" style={{ overflowX: "auto" }}>
+            <table className="comparison-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem", textAlign: "left" }}>
               <thead>
                 <tr style={{ background: "#ffffff", borderBottom: "2px solid #cbd5e1" }}>
                   <th style={{ padding: "14px 16px", color: "#0f172a", fontWeight: "900" }}>Library Operations</th>

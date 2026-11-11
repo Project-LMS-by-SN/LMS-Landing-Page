@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { FaTable, FaTag } from "react-icons/fa";
 
 const billingCycles = [
@@ -92,15 +92,7 @@ export default function SubscriptionTiers() {
       <div className="container">
         {/* Section Header */}
         <div style={{ textAlign: "center", maxWidth: "820px", margin: "0 auto 40px" }}>
-          <div className="badge-blue" style={{ marginBottom: "14px" }}>
-            <FaTable /> Subscription Tiers &amp; Features
-          </div>
-          <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px", color: "#0f172a" }}>
-            Pick the Plan That Fits Your Library
-          </h2>
-          <p style={{ color: "#475569", fontSize: "1.05rem", lineHeight: 1.6 }}>
-            Compare every tier side by side. Plan prices below are multiplied for the selected billing period.
-          </p>
+
 
           {/* Billing Options */}
           <div
@@ -244,7 +236,7 @@ export default function SubscriptionTiers() {
                       ) : (
                         <div>
                           <div style={{ fontWeight: "900", color: tier.accent, fontSize: "1.15rem" }}>
-                            ₹{total.toLocaleString("en-IN")}
+                            â‚¹{total.toLocaleString("en-IN")}
                           </div>
                           <div style={{ fontSize: "0.72rem", color: "#64748b" }}>
                             {activeCycle.suffix}

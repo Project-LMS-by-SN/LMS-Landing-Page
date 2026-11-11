@@ -174,7 +174,7 @@ export default function AboutUs() {
           </div>
 
           <div className="white-card" style={{ padding: "0", overflow: "hidden", border: "1.5px solid var(--border-medium)" }}>
-            <div style={{
+            <div className="about-comparison-header" style={{
               display: "grid",
               gridTemplateColumns: "1.2fr 1fr 1fr",
               padding: "20px 24px",
@@ -220,7 +220,7 @@ export default function AboutUs() {
                 lms: "Multi-branch cloud console with real-time sync"
               }
             ].map((row, i) => (
-              <div
+              <div className="about-comparison-row"
                 key={i}
                 style={{
                   display: "grid",

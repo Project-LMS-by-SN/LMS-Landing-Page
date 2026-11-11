@@ -267,10 +267,6 @@ export default function RegisterPage() {
         borderBottom: "1px solid var(--border-subtle)"
       }}>
         <div className="container" style={{ maxWidth: "880px" }}>
-          <div className="badge-green" style={{ marginBottom: "16px" }}>
-            <span className="pulse-dot-green"></span>
-            <span>Official Library Registration & Instant Verification</span>
-          </div>
           <h1 style={{ fontSize: "clamp(2.3rem, 4.5vw, 3.6rem)", lineHeight: 1.18, marginBottom: "16px", color: "#0f172a" }}>
             Register Your Library With <span className="gradient-blue">LMS by Study Guru</span>
           </h1>
