@@ -8,7 +8,6 @@ import {
   FaCamera,
   FaMapMarkerAlt,
   FaCheckCircle,
-  FaTimes,
   FaClock,
   FaPrint
 } from "react-icons/fa";
@@ -74,6 +73,8 @@ export default function RegisterPage() {
 
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverNotice, setServerNotice] = useState("");
   const [regId, setRegId] = useState("");
   const [submissionDate, setSubmissionDate] = useState("");
 
@@ -103,8 +104,9 @@ export default function RegisterPage() {
     if (photoInputRef.current) photoInputRef.current.value = "";
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setServerNotice("");
 
     // 1. Owner Name constraint
     const cleanOwner = formData.ownerName.trim();
@@ -201,6 +203,8 @@ export default function RegisterPage() {
       return;
     }
 
+    setIsSubmitting(true);
+
     const uniqueId = `LMS-REG-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
     const nowTime = new Date().toLocaleString("en-IN", {
       day: "2-digit",
@@ -211,16 +215,71 @@ export default function RegisterPage() {
       hour12: true
     });
 
-    setRegId(uniqueId);
+    const fullAddress = [formData.addressLine, formData.stateName, formData.pincode].filter(Boolean).join(", ");
+    const capacitySeats = formData.capacity === "Unlimited" ? 1000 : Number(formData.capacity || 100);
+
+    // Payload for libraryregister collection
+    // Note: Library Photo and Description are omitted (not saved) as requested
+    // Note: Password is not collected from user and stored as null
+    const payload = {
+      libraryName: cleanLib,
+      address: fullAddress || formData.addressLine || "",
+      city: cleanCity || "Noida",
+      phone: cleanPhone,
+      quota: capacitySeats,
+      activeStudentsLimit: capacitySeats,
+      ownerName: cleanOwner,
+      email: cleanGmail,
+      tier: "FREE"
+    };
+
+    let assignedId = uniqueId;
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        if (result.id) {
+          assignedId = `LMS-REG-${result.id}`;
+        }
+        setServerNotice("Registration saved to libraryregister collection successfully!");
+      } else {
+        console.warn("Backend registration response:", result.message);
+        if (result.message) {
+          setServerNotice(result.message);
+        }
+      }
+    } catch (err) {
+      console.warn("API request failed (server might be offline or starting):", err);
+      setServerNotice("Note: Server is offline or starting. Application recorded locally.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    setRegId(assignedId);
     setSubmissionDate(nowTime);
 
-    // Save registration acknowledgment locally
+    // Save registration acknowledgment locally without photo and without description
     const registrationRecord = {
-      regId: uniqueId,
+      regId: assignedId,
       submittedAt: nowTime,
-      ...formData,
-      hasPhoto: !!libraryPhoto,
-      photoName: libraryPhoto ? libraryPhoto.name : null
+      ownerName: cleanOwner,
+      libraryName: cleanLib,
+      email: cleanGmail,
+      phone: cleanPhone,
+      city: cleanCity,
+      state: formData.stateName,
+      pincode: cleanPin,
+      capacity: formData.capacity,
+      activeStudentsLimit: capacitySeats
     };
 
     try {
@@ -844,6 +903,7 @@ export default function RegisterPage() {
                 <div>
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="btn-primary"
                     style={{
                       width: "100%",
@@ -852,10 +912,12 @@ export default function RegisterPage() {
                       fontWeight: "900",
                       justifyContent: "center",
                       borderRadius: "14px",
-                      boxShadow: "0 10px 25px rgba(37,99,235,0.25)"
+                      boxShadow: "0 10px 25px rgba(37,99,235,0.25)",
+                      opacity: isSubmitting ? 0.75 : 1,
+                      cursor: isSubmitting ? "not-allowed" : "pointer"
                     }}
                   >
-                    <FaBuilding /> Complete Library Registration & Activate Portal
+                    <FaBuilding /> {isSubmitting ? "Registering & Saving Data..." : "Complete Library Registration & Activate Portal"}
                   </button>
                 </div>
               </form>
@@ -948,29 +1010,18 @@ export default function RegisterPage() {
                     <strong style={{ color: "#0f172a" }}>{formData.cityName}, {formData.stateName} ({formData.pincode})</strong>
                   </div>
                   <div>
-                    <span style={{ color: "#64748b", fontSize: "0.8rem", display: "block" }}>Library Picture:</span>
-                    <strong style={{ color: "#0f172a" }}>{libraryPhoto ? libraryPhoto.name : "Uploaded / Ready"}</strong>
+                    <span style={{ color: "#64748b", fontSize: "0.8rem", display: "block" }}>Database Collection:</span>
+                    <strong style={{ color: "#16a34a" }}>libraryregister</strong>
                   </div>
                   <div>
                     <span style={{ color: "#64748b", fontSize: "0.8rem", display: "block" }}>Submission Time:</span>
                     <strong style={{ color: "#0f172a" }}>{submissionDate}</strong>
                   </div>
-                  {formData.description && (
+                  {serverNotice && (
                     <div style={{ gridColumn: "1 / -1", marginTop: "4px" }}>
-                      <span style={{ color: "#64748b", fontSize: "0.8rem", display: "block" }}>Description:</span>
-                      <p style={{
-                        color: "#0f172a",
-                        fontSize: "0.88rem",
-                        marginTop: "4px",
-                        lineHeight: 1.5,
-                        background: "#ffffff",
-                        padding: "10px 14px",
-                        borderRadius: "8px",
-                        border: "1px solid var(--border-subtle)",
-                        whiteSpace: "pre-wrap"
-                      }}>
-                        {formData.description}
-                      </p>
+                      <span style={{ color: "#16a34a", fontSize: "0.85rem", fontWeight: "700" }}>
+                        ✓ {serverNotice}
+                      </span>
                     </div>
                   )}
                 </div>
